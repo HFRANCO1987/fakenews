@@ -28,6 +28,9 @@ public class Usuario implements Serializable {
 	@Column(name = "senha")
 	private String senha;
 
+	@Column(name = "foto")
+	private String foto;
+
 	public Usuario() {
 	}
 
@@ -61,6 +64,14 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	@Override

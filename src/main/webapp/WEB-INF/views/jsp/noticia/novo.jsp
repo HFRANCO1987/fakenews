@@ -62,7 +62,7 @@
 				<h1 class="h2">Cadastro de Notícia</h1>
 			</div>
 			<div>
-				<form action="/noticia/salvar" method="post" commandName="noticia">
+				<form action="/noticia/salvar" method="post" commandName="noticia" enctype="multipart/form-data">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="titulo">Titulo</label> <input type="text"
@@ -76,13 +76,8 @@
 								class="form-control" name="link" placeholder="Link">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="inputGroupFile01">Definir imagem</label>
-							<div class="custom-file">
-								<input type="file" class="custom-file-input" id=""
-									inputGroupFile01"" aria-describedby="inputGroupFileAddon01">
-								<label class="custom-file-label" for="inputGroupFile01">Escolha
-									a Imagem</label>
-							</div>
+							<label for="file">Imagem</label> <input type="file"
+								class="form-control" name="file">
 						</div>
 					</div>
 

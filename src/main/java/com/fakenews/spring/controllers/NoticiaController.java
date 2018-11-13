@@ -3,18 +3,21 @@ package com.fakenews.spring.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fakenews.spring.controllers.session.UsuarioSessao;
 import com.fakenews.spring.model.Comentario;
 import com.fakenews.spring.model.Noticia;
-import com.fakenews.spring.model.Usuario;
 import com.fakenews.spring.service.NoticiaService;
 
 @Controller
@@ -35,8 +38,11 @@ public class NoticiaController {
 	}
 
 	@PostMapping(value = "/noticia/salvar")
-	public String salvar(Noticia noticia, RedirectAttributes redirectAttributes) {
+	public String salvar(@RequestParam("file") MultipartFile file, Noticia noticia, RedirectAttributes redirectAttributes) {
 		try {
+			byte[] encodeBase64 = Base64Utils.encode(IOUtils.toByteArray(file.getInputStream()));
+			String base64Encoded = new String(encodeBase64, "UTF-8");
+			noticia.setImagem(base64Encoded);
 			noticia.setUsuario(usuarioSessao.getUsuario());
 			noticiaService.saveOrUpdate(noticia);
 			redirectAttributes.addFlashAttribute("sucesso", "Notícia gravada com sucesso!");

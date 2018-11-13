@@ -68,6 +68,7 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col" style="width: 40px">Código</th>
+								<th scope="col">Foto</th>
 								<th scope="col">Nome</th>
 								<th scope="col">E-mail</th>
 								<th scope="col"  style="width: 180px">Operação</th>
@@ -77,6 +78,11 @@
 							<c:forEach items="${usuarios}" var="usuario">
 								<tr>
 									<td>${usuario.id}</td>
+									<td>
+										<c:if test="${usuario.foto != null}">
+											<img src="data:image/jpeg;base64,${usuario.foto}" style="width:50px;heigth:50px">
+										</c:if>
+									</td>
 									<td>${usuario.nome}</td>
 									<td>${usuario.email}</td>
 									<td><a href="#">[EDITAR]</a> | <a href="#">[EXCLUIR]</a></td>

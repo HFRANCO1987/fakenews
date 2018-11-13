@@ -30,28 +30,28 @@
 					<span class="sr-only">(current)</span>
 			</a></li>
 			<c:if test="${usuario.id > 0}">
-				<li class="nav-item"><a class="nav-link" href="/usuario/pesquisa">Usuários</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/usuario/pesquisa">Usuários</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="/noticia/pesquisa">Notícias</a></li>
 			</c:if>
 		</ul>
 	</div>
-	<input type="hidden" value="${usuario.id}">
-  <c:if test="${usuario.id > 0}">
-  	<span class="badge badge-danger">${usuario.nome} | ${usuario.email}</span>
-  </c:if>
-  
-  <ul class="navbar-nav px-3">
-  		<c:if test="${usuario.id > 0}">
-			<li class="nav-item text-nowrap">
-				<a class="nav-link" href="/logout">
-				Logout
-				</a>
-			</li>
-  		</c:if>
-  		<c:if test="${usuario.id == null}">
-			<li class="nav-item text-nowrap"><a class="nav-link" href="/login">Login</a></li>
-  		</c:if>
+	<input type="hidden" value="${usuario.id}"> <c:if
+		test="${usuario.id > 0}">
+		<span class="badge badge-danger">${usuario.nome} |
+			${usuario.email}</span>
+	</c:if>
+
+	<ul class="navbar-nav px-3">
+		<c:if test="${usuario.id > 0}">
+			<li class="nav-item text-nowrap"><a class="nav-link"
+				href="/logout"> Logout </a></li>
+		</c:if>
+		<c:if test="${usuario.id == null}">
+			<li class="nav-item text-nowrap"><a class="nav-link"
+				href="/login">Login</a></li>
+		</c:if>
 	</ul>
 	</nav>
 
@@ -77,7 +77,16 @@
 						</div>
 
 						<div class="card-body text-primary">
-							<p class="card-text">${fn:substring(noticia.texto,0, 500)}</p>
+							<div class="media">
+								<c:if test="${noticia.imagem != null}">
+									<img class="mr-3"
+										src="data:image/jpeg;base64,${noticia.imagem}">
+								</c:if>
+								<div class="media-body">
+									<h5 class="mt-0">${noticia.titulo}</h5>
+									<p class="card-text">${noticia.texto}</p>
+								</div>
+							</div>
 						</div>
 
 						<div class="card-footer">
@@ -96,22 +105,26 @@
 							</c:if>
 							<ul class="list-group mt-2">
 								<c:forEach var="comentario" items="${noticia.listaComentarios}">
-									<li class="list-group-item">
-									
-									<c:if test="${comentario.usuario.id == noticia.usuario.id }">
-										<span class="badge badge-primary">${comentario.usuario.nome} - 
-										<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-												value="${comentario.data}" /></span> 
-									</c:if>
-									
-									<c:if test="${comentario.usuario.id != noticia.usuario.id }">
-										<span class="badge badge-warning">${comentario.usuario.nome} - 
-										<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-													value="${comentario.data}" /></span> 
-									</c:if>
-									
-									
-									<br/> ${comentario.descricao}</li>
+									<li class="list-group-item"><c:if
+											test="${comentario.usuario.id == noticia.usuario.id }">
+											<c:if test="${comentario.usuario.foto != null}">
+												<img src="data:image/jpeg;base64,${comentario.usuario.foto}"
+													style="width: 50px; heigth: 50px">
+											</c:if>
+											<span class="badge badge-primary">${comentario.usuario.nome}
+												- <fmt:formatDate type="both" dateStyle="short"
+													timeStyle="short" value="${comentario.data}" />
+											</span>
+										</c:if> <c:if test="${comentario.usuario.id != noticia.usuario.id }">
+											<c:if test="${comentario.usuario.foto != null}">
+												<img src="data:image/jpeg;base64,${comentario.usuario.foto}"
+													style="width: 50px; heigth: 50px">
+											</c:if>
+											<span class="badge badge-warning">${comentario.usuario.nome}
+												- <fmt:formatDate type="both" dateStyle="short"
+													timeStyle="short" value="${comentario.data}" />
+											</span>
+										</c:if> <br /> ${comentario.descricao}</li>
 								</c:forEach>
 							</ul>
 						</div>

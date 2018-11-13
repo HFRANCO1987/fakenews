@@ -34,7 +34,7 @@ public class Noticia implements Serializable {
 	private String titulo;
 
 	@Column(name = "imagem")
-	private byte[] imagem;
+	private String imagem;
 
 	@Column(name = "texto")
 	@NotNull(message="Texto é um campo obrigatório!")
@@ -79,11 +79,11 @@ public class Noticia implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public byte[] getImagem() {
+	public String getImagem() {
 		return imagem;
 	}
 
-	public void setImagem(byte[] imagem) {
+	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
 

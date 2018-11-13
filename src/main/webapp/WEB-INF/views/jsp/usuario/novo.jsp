@@ -62,7 +62,7 @@
 				<h1 class="h2">Cadastro de Usuário</h1>
 			</div>
 			<div>
-				<form action="/usuario/salvar" method="post" commandName="usuario">
+				<form action="/usuario/salvar" method="post" commandName="usuario" enctype="multipart/form-data">
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="nome">Nome</label> <input type="text"
@@ -72,9 +72,13 @@
 							<label for="email">E-mail</label> <input type="email"
 								class="form-control" name="email" placeholder="E-mail">
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-2">
 							<label for="senha">Senha</label> <input type="password"
 								class="form-control" name="senha" placeholder="Senha">
+						</div>
+						<div class="form-group col-md-2">
+							<label for="file">Foto</label> <input type="file"
+								class="form-control" name="file">
 						</div>
 					</div>
 					<button type="reset" class="btn btn-danger">Cancelar</button>
