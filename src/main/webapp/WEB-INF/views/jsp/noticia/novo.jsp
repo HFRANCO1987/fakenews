@@ -65,26 +65,26 @@
 				<form action="/noticia/salvar" method="post" commandName="noticia" enctype="multipart/form-data">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="titulo">Titulo</label> <input type="text"
+							<label for="titulo">Titulo *</label> <input type="text" required autofocus
 								class="form-control" name="titulo" placeholder="Título">
 						</div>
 					</div>
 
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="link">Link</label> <input type="text"
+							<label for="link">Link *</label> <input type="text" required
 								class="form-control" name="link" placeholder="Link">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="file">Imagem</label> <input type="file"
+							<label for="file">Imagem</label> <input type="file" 
 								class="form-control" name="file">
 						</div>
 					</div>
 
 					<div class="form-row">
-						<label for="editor">Texto</label>
+						<label for="editor">Texto *</label>
 						<div class="form-group col-md-12">
-							<textarea name="texto" id="editor" >
+							<textarea name="texto" id="editor" required>
 							   Informe o texto da notícia
 							</textarea>
 						</div>

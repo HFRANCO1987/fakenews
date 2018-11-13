@@ -27,12 +27,14 @@
 		</div>
 
 		<div class="form-group">
-			<input type="email" name="email" class="form-control"
+			<input type="email" name="email" class="form-control" required
+				autofocus
 				placeholder="Email"> 
 		</div>
 
 		<div class="form-group">
 			<input type="password" name="senha" class="form-control"
+				required
 				placeholder="Senha"> 
 		</div>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>

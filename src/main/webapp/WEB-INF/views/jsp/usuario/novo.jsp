@@ -65,19 +65,21 @@
 				<form action="/usuario/salvar" method="post" commandName="usuario" enctype="multipart/form-data">
 					<div class="form-row">
 						<div class="form-group col-md-4">
-							<label for="nome">Nome</label> <input type="text"
+							<label for="nome">Nome *</label> <input type="text" 
+								required 
+								autofocus
 								class="form-control" name="nome" placeholder="Nome">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="email">E-mail</label> <input type="email"
+							<label for="email">E-mail *</label> <input type="email" required
 								class="form-control" name="email" placeholder="E-mail">
 						</div>
 						<div class="form-group col-md-2">
-							<label for="senha">Senha</label> <input type="password"
+							<label for="senha">Senha *</label> <input type="password" required
 								class="form-control" name="senha" placeholder="Senha">
 						</div>
 						<div class="form-group col-md-2">
-							<label for="file">Foto</label> <input type="file"
+							<label for="file">Foto *</label> <input type="file" required
 								class="form-control" name="file">
 						</div>
 					</div>
