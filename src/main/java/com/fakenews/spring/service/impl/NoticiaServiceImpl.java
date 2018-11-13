@@ -14,12 +14,12 @@ public class NoticiaServiceImpl implements NoticiaService {
 
 	@Autowired
 	private NoticiaRepository repository;
-	
+
 	@Override
 	public void saveOrUpdate(Noticia noticia) throws Exception {
 		try {
 			repository.save(noticia);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
@@ -29,13 +29,14 @@ public class NoticiaServiceImpl implements NoticiaService {
 
 	}
 
-	private void validarObrigatoriedade(Noticia noticia) {
-
-	}
-
 	@Override
 	public List<Noticia> findAll() {
 		return (List<Noticia>) repository.findAll();
+	}
+
+	@Override
+	public Noticia findById(Long id) {
+		return repository.findById(id).orElseThrow(() -> new RuntimeException("Registro não encontrado"));
 	}
 
 }

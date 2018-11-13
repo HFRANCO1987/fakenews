@@ -12,4 +12,6 @@ public interface NoticiaService {
 
 	public List<Noticia> findAll();
 
+	public Noticia findById(Long id);
+
 }

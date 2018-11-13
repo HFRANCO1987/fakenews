@@ -53,10 +53,11 @@
 							</div>
 							
 							<div class="card-footer text-right">
-								<a href="#" class="badge badge-primary">Leia mais!</a> <a
-									href="#" class="badge badge-info">Comentários</a>
+								<a href="/noticia/${noticia.id}" class="badge badge-primary">Leia mais!</a> <a
+									class="badge badge-info" href="/noticia/${noticia.id}">Comentários (${noticia.listaComentarios.size()})</a>
 							</div>
 						</div>
+						<br/>
 					</c:forEach>
 					
 					

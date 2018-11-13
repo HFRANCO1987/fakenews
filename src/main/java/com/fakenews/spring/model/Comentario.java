@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tab_comentario")
@@ -30,7 +31,7 @@ public class Comentario implements Serializable {
 
 	@Column(name = "data")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date data;
+	private Date data = new Date();
 
 	@ManyToOne
 	@JoinColumn(name = "noticia")
@@ -39,6 +40,9 @@ public class Comentario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
+
+	@Transient
+	private Long idNoticia;
 
 	public Comentario() {
 	}
@@ -106,6 +110,14 @@ public class Comentario implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Long getIdNoticia() {
+		return idNoticia;
+	}
+
+	public void setIdNoticia(Long idNoticia) {
+		this.idNoticia = idNoticia;
 	}
 
 }

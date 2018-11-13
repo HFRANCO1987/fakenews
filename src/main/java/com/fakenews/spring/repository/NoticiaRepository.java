@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.fakenews.spring.model.Noticia;
 
 @Repository
-public interface NoticiaRepository extends CrudRepository<Noticia, Integer> {
+public interface NoticiaRepository extends CrudRepository<Noticia, Long> {
 
 }
