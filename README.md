@@ -1,0 +1,2 @@
+# fakenews
+Manter Notícias - FakeNews
