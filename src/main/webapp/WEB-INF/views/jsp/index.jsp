@@ -45,7 +45,7 @@
   <ul class="navbar-nav px-3">
   		<c:if test="${usuario.id > 0}">
 			<li class="nav-item text-nowrap">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="/logout">
 				Logout
 				</a>
 			</li>
@@ -70,10 +70,10 @@
 						<div class="card border-secondary mb-12">
 							
 							<div class="card-header" style="font-weight: bold">
-								${noticia.titulo} <span
+								<a href="${noticia.link}" target="blank_">${noticia.titulo}</a> <span
 									style="text-align: right; width: 100%; display: flex; direction: rtl">
 									<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-										value="${noticia.data}" /> - Henrique
+										value="${noticia.data}" /> - ${noticia.usuario.nome}
 								</span>
 							</div>
 							

@@ -26,7 +26,12 @@ public class UsuarioController {
 	@GetMapping(value="/login")
 	public ModelAndView login() {
 		return new ModelAndView("/login");
-		
+	}
+	
+	@GetMapping(value="/logout")
+	public ModelAndView logout() {
+		usuarioSessao.setUsuario(null);
+		return new ModelAndView("redirect:/");
 	}
 
 	@PostMapping(value="/autenticar")

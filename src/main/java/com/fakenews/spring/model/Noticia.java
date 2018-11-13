@@ -50,7 +50,7 @@ public class Noticia implements Serializable {
 	@Column(name = "aprovado")
 	private Boolean isAprovado = Boolean.FALSE;
 
-	@OneToMany(mappedBy = "noticia", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "noticia", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Comentario> listaComentarios = new ArrayList<>();
 
 	@Column(name = "data")
