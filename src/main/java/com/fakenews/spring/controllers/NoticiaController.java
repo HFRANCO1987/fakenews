@@ -11,61 +11,71 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fakenews.spring.controllers.session.UsuarioSessao;
 import com.fakenews.spring.model.Comentario;
 import com.fakenews.spring.model.Noticia;
+import com.fakenews.spring.model.Usuario;
 import com.fakenews.spring.service.NoticiaService;
 
 @Controller
 public class NoticiaController {
-	
+
 	@Autowired
 	private NoticiaService noticiaService;
+	
+	@Autowired
+	private UsuarioSessao usuarioSessao;
 
 	@GetMapping(value = "/")
 	public ModelAndView index() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("noticias", noticiaService.findAll());
+		model.put("usuario", usuarioSessao.getUsuario());
 		return new ModelAndView("/index", model);
 	}
-	
+
 	@PostMapping(value = "/noticia/salvar")
 	public String salvar(Noticia noticia, RedirectAttributes redirectAttributes) {
 		try {
+			noticia.setUsuario(usuarioSessao.getUsuario());
 			noticiaService.saveOrUpdate(noticia);
 			redirectAttributes.addFlashAttribute("sucesso", "Notícia gravada com sucesso!");
-			return "redirect:pesquisa";
-		}catch (Exception e) {
+			return "redirect:/noticia/pesquisa";
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	@GetMapping(value = "/noticia/pesquisa")
 	public ModelAndView pesquisa() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("noticias", noticiaService.findAll());
+		model.put("usuario", usuarioSessao.getUsuario());
 		return new ModelAndView("/noticia/pesquisa", model);
 	}
 
 	@GetMapping(value = "/noticia/novo")
 	public ModelAndView novo(Noticia noticia) {
 		Map<String, Object> model = new HashMap<>();
+		model.put("usuario", usuarioSessao.getUsuario());
 		return new ModelAndView("/noticia/novo", model);
 	}
-	
+
 	@GetMapping(value = "/noticia/{id}")
 	public ModelAndView novo(@PathVariable("id") Long id, Comentario comentario) {
 		Map<String, Object> model = new HashMap<>();
 		model.put("noticia", noticiaService.findById(id));
+		model.put("usuario", usuarioSessao.getUsuario());
 		return new ModelAndView("/noticia/visualizar", model);
 	}
-	
+
 	@PostMapping(value = "/noticia/comentario")
 	public ModelAndView salvarComentario(Comentario comentario) {
-		Map<String, Object> model = new HashMap<>();
 		try {
 			Noticia noticia = noticiaService.findById(comentario.getIdNoticia());
 			comentario.setNoticia(noticia);
+			comentario.setUsuario(usuarioSessao.getUsuario());
 			noticia.getListaComentarios().add(comentario);
 			noticiaService.saveOrUpdate(noticia);
 		} catch (Exception e) {
@@ -73,5 +83,5 @@ public class NoticiaController {
 		}
 		return new ModelAndView("redirect:/noticia/" + comentario.getIdNoticia());
 	}
-	
+
 }

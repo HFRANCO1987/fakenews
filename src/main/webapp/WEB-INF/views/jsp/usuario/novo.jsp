@@ -15,7 +15,7 @@
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" />
 
-<title>Monitoramente FakeNews - Cadastro de Notícia</title>
+<title>Monitoramente FakeNews - Cadastro de Usuários</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,7 +28,7 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Usuários</a>
+        <a class="nav-link" href="/usuario/pesquisa">Usuários</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/noticia/pesquisa">Notícias</a>
@@ -59,62 +59,24 @@
 			<main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4">
 			<div
 				class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-				<h1 class="h2">Cadastro de Notícia</h1>
+				<h1 class="h2">Cadastro de Usuário</h1>
 			</div>
 			<div>
-				<form action="/noticia/salvar" method="post" commandName="noticia">
+				<form action="/usuario/salvar" method="post" commandName="usuario">
 					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="titulo">Titulo</label> <input type="text"
-								class="form-control" name="titulo" placeholder="Título">
+						<div class="form-group col-md-4">
+							<label for="nome">Nome</label> <input type="text"
+								class="form-control" name="nome" placeholder="Nome">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="email">E-mail</label> <input type="email"
+								class="form-control" name="email" placeholder="E-mail">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="senha">Senha</label> <input type="password"
+								class="form-control" name="senha" placeholder="Senha">
 						</div>
 					</div>
-
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="link">Link</label> <input type="text"
-								class="form-control" name="link" placeholder="Link">
-						</div>
-						<div class="form-group col-md-6">
-							<label for="inputGroupFile01">Definir imagem</label>
-							<div class="custom-file">
-								<input type="file" class="custom-file-input" id=""
-									inputGroupFile01"" aria-describedby="inputGroupFileAddon01">
-								<label class="custom-file-label" for="inputGroupFile01">Escolha
-									a Imagem</label>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-row">
-						<label for="editor">Texto</label>
-						<div class="form-group col-md-12">
-							<textarea name="texto" id="editor" >
-							   Informe o texto da notícia
-							</textarea>
-						</div>
-					</div>
-
-
-
-					<div class="form-row">
-						<div class="form-group col-md-2">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" name="isFake">
-								<label class="form-check-label" for="gridCheck"> É
-									FakeNews? </label>
-							</div>
-						</div>
-						<div class="form-group col-md-2">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" name="isAprovado">
-								<label class="form-check-label" for="gridCheck">
-									Publicar? </label>
-							</div>
-						</div>
-
-					</div>
-
 					<button type="reset" class="btn btn-danger">Cancelar</button>
 					<button type="submit" class="btn btn-primary">Gravar</button>
 				</form>
@@ -125,20 +87,5 @@
 
 	<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	
-	
-	<script
-		src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
-
-	<script>
-		ClassicEditor
-	    .create( document.querySelector( '#editor' ) )
-	    .then( editor => {
-	        console.log( editor );
-	    } )
-	    .catch( error => {
-	        console.error( error );
-	    } );
-	</script>
 </body>
 </html>

@@ -18,14 +18,43 @@
 <title>Monitoramento FakeNews - Listagem de Notícia</title>
 </head>
 <body>
-	<nav
-		class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-	<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Monitoramente
-		FakeNews</a>
-	<ul class="navbar-nav px-3">
-		<li class="nav-item text-nowrap"><a class="nav-link" href="#">Login</a></li>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <c:if test="${usuario.id > 0}">
+	      <li class="nav-item">
+	        <a class="nav-link" href="/usuario/pesquisa">Usuários</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/noticia/pesquisa">Notícias</a>
+	      </li>
+      </c:if>
+    </ul>
+  </div>
+  <input type="hidden" value="${usuario.id}">
+  <c:if test="${usuario.id > 0}">
+  	<span class="badge badge-danger">${usuario.nome} | ${usuario.email}</span>
+  </c:if>
+  
+  <ul class="navbar-nav px-3">
+  		<c:if test="${usuario.id > 0}">
+			<li class="nav-item text-nowrap">
+				<a class="nav-link" href="#">
+				Logout
+				</a>
+			</li>
+  		</c:if>
+  		<c:if test="${usuario.id == null}">
+			<li class="nav-item text-nowrap"><a class="nav-link" href="/login">Login</a></li>
+  		</c:if>
 	</ul>
-	</nav>
+</nav>
 
 	<div class="container-fluid">
 		<div class="row">

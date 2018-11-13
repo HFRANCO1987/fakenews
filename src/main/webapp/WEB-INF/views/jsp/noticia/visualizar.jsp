@@ -29,13 +29,29 @@
 			<li class="nav-item active"><a class="nav-link" href="/">Home
 					<span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Usuários</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="/noticia/pesquisa">Notícias</a></li>
+			<c:if test="${usuario.id > 0}">
+				<li class="nav-item"><a class="nav-link" href="/usuario/pesquisa">Usuários</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/noticia/pesquisa">Notícias</a></li>
+			</c:if>
 		</ul>
 	</div>
-	<ul class="navbar-nav px-3">
-		<li class="nav-item text-nowrap"><a class="nav-link" href="#">Login</a></li>
+	<input type="hidden" value="${usuario.id}">
+  <c:if test="${usuario.id > 0}">
+  	<span class="badge badge-danger">${usuario.nome} | ${usuario.email}</span>
+  </c:if>
+  
+  <ul class="navbar-nav px-3">
+  		<c:if test="${usuario.id > 0}">
+			<li class="nav-item text-nowrap">
+				<a class="nav-link" href="#">
+				Logout
+				</a>
+			</li>
+  		</c:if>
+  		<c:if test="${usuario.id == null}">
+			<li class="nav-item text-nowrap"><a class="nav-link" href="/login">Login</a></li>
+  		</c:if>
 	</ul>
 	</nav>
 
@@ -56,7 +72,7 @@
 							${noticia.titulo} <span
 								style="text-align: right; width: 100%; display: flex; direction: rtl">
 								<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-									value="${noticia.data}" /> - Henrique
+									value="${noticia.data}" /> - ${noticia.usuario.nome}
 							</span>
 						</div>
 
@@ -65,23 +81,37 @@
 						</div>
 
 						<div class="card-footer">
-							<div class="row">
-								<div class="col-md-12" style="display: flex">
-									<textarea cols="4" name="descricao"></textarea>
-									<button type="submit" class="btn btn-primary"
-										style="align-self: center; margin-left: 5px; width: 5%;">Enviar</button>
+							<c:if test="${usuario.id > 0}">
+								<div class="row">
+									<div class="col-md-12" style="display: flex">
+										<textarea cols="4" name="descricao"></textarea>
+										<button type="submit" class="btn btn-primary"
+											style="align-self: center; margin-left: 5px; width: 5%;">Enviar</button>
+									</div>
+									<div class="col-md-1 pt-2">
+										<a href="#" class="badge badge-info">Comentários
+											(${noticia.listaComentarios.size()})</a>
+									</div>
 								</div>
-								<div class="col-md-1 pt-2">
-									<a href="#" class="badge badge-info">Comentários
-										(${noticia.listaComentarios.size()})</a>
-								</div>
-							</div>
+							</c:if>
 							<ul class="list-group mt-2">
 								<c:forEach var="comentario" items="${noticia.listaComentarios}">
-									<li class="list-group-item"><span
-										class="badge badge-warning"><fmt:formatDate type="both"
-												dateStyle="short" timeStyle="short"
-												value="${comentario.data}" /></span> <br/> ${comentario.descricao}</li>
+									<li class="list-group-item">
+									
+									<c:if test="${comentario.usuario.id == noticia.usuario.id }">
+										<span class="badge badge-primary">${comentario.usuario.nome} - 
+										<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+												value="${comentario.data}" /></span> 
+									</c:if>
+									
+									<c:if test="${comentario.usuario.id != noticia.usuario.id }">
+										<span class="badge badge-warning">${comentario.usuario.nome} - 
+										<fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+													value="${comentario.data}" /></span> 
+									</c:if>
+									
+									
+									<br/> ${comentario.descricao}</li>
 								</c:forEach>
 							</ul>
 						</div>

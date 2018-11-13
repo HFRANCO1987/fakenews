@@ -56,10 +56,10 @@
 			<main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4">
 			<div class="row">
 				<div class="col-md-6">
-					<h1 class="h2">Listagem de Notícias</h1>
+					<h1 class="h2">Listagem de Usuários</h1>
 				</div>
 				<div class="col-md-6 text-right">
-					<button type="button" onclick="window.location.href = '/noticia/novo'" class="btn btn-success">Inserir Nova Notícia</button>
+					<button type="button" onclick="window.location.href = '/usuario/novo'" class="btn btn-success">Inserir Novo Usuário</button>
 				</div>
 			</div>
 			<div>
@@ -68,21 +68,17 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col" style="width: 40px">Código</th>
-								<th scope="col">Titulo</th>
-								<th scope="col">Resumo texto</th>
-								<th scope="col" style="width: 80px">É Fake?</th>
-								<th scope="col" style="width: 80px">Publicar?</th>
-								<th scope="col" style="width: 180px">Operação</th>
+								<th scope="col">Nome</th>
+								<th scope="col">E-mail</th>
+								<th scope="col"  style="width: 180px">Operação</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${noticias}" var="noticia">
+							<c:forEach items="${usuarios}" var="usuario">
 								<tr>
-									<td>${noticia.id}</td>
-									<td>${noticia.titulo}</td>
-									<td>${fn:substring(noticia.texto,0, 150)}...</td>
-									<td>${noticia.isFake ? 'Sim' : 'Não'}</td>
-									<td>${noticia.isAprovado ? 'Sim' : 'Não'}</td>
+									<td>${usuario.id}</td>
+									<td>${usuario.nome}</td>
+									<td>${usuario.email}</td>
 									<td><a href="#">[EDITAR]</a> | <a href="#">[EXCLUIR]</a></td>
 								</tr>
 							</c:forEach>

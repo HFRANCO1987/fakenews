@@ -1,18 +1,12 @@
 package com.fakenews.spring.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,10 +27,6 @@ public class Usuario implements Serializable {
 
 	@Column(name = "senha")
 	private String senha;
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tab_usuarios_grupo", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_grupo"))
-	private Set<Grupo> grupos = new HashSet<Grupo>();
 
 	public Usuario() {
 	}
@@ -71,14 +61,6 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public Set<Grupo> getGrupos() {
-		return grupos;
-	}
-
-	public void setGrupos(Set<Grupo> grupos) {
-		this.grupos = grupos;
 	}
 
 	@Override
