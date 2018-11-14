@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tab_noticia")
@@ -30,18 +29,15 @@ public class Noticia implements Serializable {
 	private Long id;
 
 	@Column(name = "titulo")
-	@NotNull(message="Titulo é um campo obrigatório!")
 	private String titulo;
 
 	@Column(name = "imagem")
 	private String imagem;
 
 	@Column(name = "texto")
-	@NotNull(message="Texto é um campo obrigatório!")
 	private String texto;
 
 	@Column(name = "link")
-	@NotNull(message="Link é um campo obrigatório!")
 	private String link;
 
 	@Column(name = "fake")
