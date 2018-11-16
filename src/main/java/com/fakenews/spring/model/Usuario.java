@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -28,7 +29,8 @@ public class Usuario implements Serializable {
 	@Column(name = "senha")
 	private String senha;
 
-	@Column(name = "foto")
+	@Lob
+	@Column(columnDefinition = "TEXT", name = "foto")
 	private String foto;
 
 	public Usuario() {

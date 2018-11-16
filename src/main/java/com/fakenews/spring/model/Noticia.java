@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,10 +32,12 @@ public class Noticia implements Serializable {
 	@Column(name = "titulo")
 	private String titulo;
 
-	@Column(name = "imagem")
+	@Lob
+	@Column(name = "imagem", columnDefinition = "TEXT")
 	private String imagem;
 
-	@Column(name = "texto")
+	@Lob
+	@Column(name = "texto", columnDefinition = "TEXT")
 	private String texto;
 
 	@Column(name = "link")
